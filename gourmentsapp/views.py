@@ -1,5 +1,5 @@
-from .models import Users, FeedbackModel
-from .serializers import FeedbackModelSerializer, UsersSerializer, FeedbackCreateSerializer
+from .models import Users, FeedbackModel, ItemModel
+from .serializers import FeedbackModelSerializer, UsersSerializer, FeedbackCreateSerializer, ItemModelSerializer
 from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -39,4 +39,10 @@ class UserGetView(APIView):
 class CreateFeedbackView(generics.CreateAPIView):
     queryset = FeedbackModel.objects.all()
     serializer_class = FeedbackCreateSerializer
+    permission_classes = [permissions.AllowAny]
+
+
+class ItemView(generics.ListAPIView):
+    queryset = ItemModel.objects.all()
+    serializer_class = ItemModelSerializer
     permission_classes = [permissions.AllowAny]

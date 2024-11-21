@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UsersView, FeedbackView, CreateUserView, UserGetView, CreateFeedbackView
+from .views import UsersView, FeedbackView, CreateUserView, UserGetView, CreateFeedbackView, ItemView
 
 urlpatterns = [
     path('users/', UsersView.as_view(), name='users'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('create_user/', CreateUserView.as_view(), name='create'),
     path('users/<str:telegram_id>/', UserGetView.as_view(), name='user'),
     path('feedback_create/', CreateFeedbackView.as_view(), name='create_feedback'),
+    path('items/', ItemView.as_view(), name='items'),
 ]

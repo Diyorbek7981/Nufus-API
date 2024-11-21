@@ -15,17 +15,24 @@ class Users(BaseModel):
     username = models.CharField(max_length=100, unique=True)
     age = models.CharField(max_length=100)
     phone = models.CharField(max_length=100, unique=True)
-    gender = models.CharField(max_length=100)
     telegram_id = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return f"{self.name} ({self.username})"
 
 
+class ItemModel(BaseModel):
+    name = models.CharField(max_length=100)
+    name_ru = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.name_ru})"
+
+
 class FeedbackModel(BaseModel):
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='feedback')
     text = models.TextField()
-    rate = models.IntegerField(default=0)
+    items = models.ForeignKey(ItemModel, on_delete=models.CASCADE, related_name='feedback_iteam')
 
     def __str__(self):
         return f"{self.user.name} {self.text[:10]}"
