@@ -25,9 +25,12 @@ ENV = dotenv_values(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = ENV.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = ['https://back.diyorbek-dev.uz']
 
 # Application definition
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'gourmentsapp',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
